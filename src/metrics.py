@@ -13,6 +13,8 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 
+from stats_test import assign_buckets
+
 DB_PATH = Path("data/retail_behavior.db")
 WINDOWS = [3, 5]
 BASELINE_DAYS = 30
@@ -70,7 +72,7 @@ def compute_metrics_for_row(
         "volume_spike_ratio": volume_spike_ratio,
         "price_range_pct": price_range_pct,
         "realized_vol": realized_vol,
-        "bucket": None,  # assigned later in stats_test.py
+        "bucket": None,  # filled by assign_buckets() in main()
     }
 
 
@@ -100,6 +102,8 @@ def main() -> None:
         df_out = pd.DataFrame(all_rows)
         df_out.to_sql("metrics_results", conn, if_exists="replace", index=False)
         print(f"metrics_results rows written: {len(df_out)}")
+        assign_buckets(conn)  # within-sector median split on public_retail_pct
+        print("bucket column populated (within-sector median split)")
     else:
         print("No rows computed — check that shareholding and price_data are populated.")
 

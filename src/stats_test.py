@@ -28,9 +28,9 @@ def assign_buckets(conn: sqlite3.Connection) -> pd.DataFrame:
         GROUP BY s.ticker, s.sector
     """, conn)
 
-    sh["bucket"] = sh.groupby("sector")["avg_retail_pct"].transform(
-        lambda x: pd.cut(x, bins=2, labels=["Low", "High"])
-    )
+    # within-sector median split: above sector median -> High, else Low
+    sector_median = sh.groupby("sector")["avg_retail_pct"].transform("median")
+    sh["bucket"] = (sh["avg_retail_pct"] > sector_median).map({True: "High", False: "Low"})
 
     # write bucket back to metrics_results
     for _, row in sh.iterrows():
