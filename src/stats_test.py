@@ -22,21 +22,20 @@ ALPHA = 0.05
 
 def assign_buckets(conn: sqlite3.Connection) -> pd.DataFrame:
     sh = pd.read_sql("""
-        SELECT s.ticker, s.sector, AVG(sh.public_retail_pct) AS avg_retail_pct
+        SELECT s.ticker, s.sector, sh.quarter_end_date, sh.public_retail_pct
         FROM stocks s
         JOIN shareholding sh ON s.ticker = sh.ticker
-        GROUP BY s.ticker, s.sector
     """, conn)
 
-    # within-sector median split: above sector median -> High, else Low
-    sector_median = sh.groupby("sector")["avg_retail_pct"].transform("median")
-    sh["bucket"] = (sh["avg_retail_pct"] > sector_median).map({True: "High", False: "Low"})
+    # within-sector median split, computed PER QUARTER (not collapsed to an all-quarter average)
+    sector_quarter_median = sh.groupby(["sector", "quarter_end_date"])["public_retail_pct"].transform("median")
+    sh["bucket"] = (sh["public_retail_pct"] > sector_quarter_median).map({True: "High", False: "Low"})
 
-    # write bucket back to metrics_results
+    # write bucket back to metrics_results — row-level match, not ticker-level
     for _, row in sh.iterrows():
         conn.execute(
-            "UPDATE metrics_results SET bucket = ? WHERE ticker = ?",
-            (str(row["bucket"]), row["ticker"]),
+            "UPDATE metrics_results SET bucket = ? WHERE ticker = ? AND quarter_end_date = ?",
+            (str(row["bucket"]), row["ticker"], str(row["quarter_end_date"])),
         )
     conn.commit()
     return sh
@@ -76,8 +75,8 @@ def run_tests(conn: sqlite3.Connection) -> None:
 def main() -> None:
     conn = sqlite3.connect(DB_PATH)
     buckets = assign_buckets(conn)
-    print("Bucket assignment:")
-    print(buckets[["ticker", "sector", "avg_retail_pct", "bucket"]].to_string(index=False))
+    print("Bucket assignment (per ticker-quarter):")
+    print(buckets[["ticker", "sector", "quarter_end_date", "public_retail_pct", "bucket"]].to_string(index=False))
     run_tests(conn)
     conn.close()
 
