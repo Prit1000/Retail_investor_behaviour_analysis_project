@@ -2,7 +2,7 @@
 Pull 2 years of daily OHLCV for all 20 NSE stocks via yfinance
 and write to the price_data SQLite table.
 
-Usage: python src/ingest_prices.py
+Usage: python ingest/ingest_prices.py
 Done condition: SELECT COUNT(DISTINCT ticker) FROM price_data = 20;
                no ticker under ~450 trading days
 """
@@ -48,7 +48,7 @@ def main() -> None:
     conn = sqlite3.connect(DB_PATH)
 
     if len(sys.argv) > 1:
-        # single-ticker mode: python src/ingest_prices.py TMPV.NS
+        # single-ticker mode: python ingest/ingest_prices.py TMPV.NS
         ingest(conn, tickers=[sys.argv[1]])
     else:
         ingest(conn, tickers=TICKERS_NS)

@@ -2,7 +2,7 @@
 Load manual screener.in CSVs (shareholding_manual.csv, results_dates.csv)
 into SQLite tables: stocks, shareholding.
 
-Usage: python src/load_shareholding.py
+Usage: python ingest/load_shareholding.py
 Done condition: SELECT COUNT(*) FROM shareholding = 160 (20 stocks x 8 quarters)
 """
 
@@ -26,16 +26,16 @@ STOCKS = [
     ("IDFCFIRSTB", "IDFC First Bank",           "Finance",       "Medium"),
     ("YESBANK",    "Yes Bank",                  "Finance",       "High"),
     ("IIFL",       "IIFL Finance",              "Finance",       "High"),
-    ("LT",         "Larsen & Toubro",           "Manufacturing", "Low"),
-    ("MARUTI",     "Maruti Suzuki",             "Manufacturing", "Low"),
-    ("BAJAJ-AUTO", "Bajaj Auto",               "Manufacturing", "Low"),
-    ("TMPV",       "Tata Motors",               "Manufacturing", "Low-Medium"),
-    ("HEROMOTOCO", "Hero MotoCorp",             "Manufacturing", "Medium"),
-    ("ASHOKLEY",   "Ashok Leyland",             "Manufacturing", "Medium"),
-    ("SUZLON",     "Suzlon Energy",             "Manufacturing", "High"),
-    ("RVNL",       "RVNL",                      "Manufacturing", "High"),
-    ("BHEL",       "BHEL",                      "Manufacturing", "High"),
-    ("IDEA",       "Vodafone Idea",             "Manufacturing", "High"),  # verify sector fit
+    ("LT",         "Larsen & Toubro",           "Manufacturing and Others", "Low"),
+    ("MARUTI",     "Maruti Suzuki",             "Manufacturing and Others", "Low"),
+    ("BAJAJ-AUTO", "Bajaj Auto",               "Manufacturing and Others", "Low"),
+    ("TMPV",       "Tata Motors",               "Manufacturing and Others", "Low-Medium"),
+    ("HEROMOTOCO", "Hero MotoCorp",             "Manufacturing and Others", "Medium"),
+    ("ASHOKLEY",   "Ashok Leyland",             "Manufacturing and Others", "Medium"),
+    ("SUZLON",     "Suzlon Energy",             "Manufacturing and Others", "High"),
+    ("RVNL",       "RVNL",                      "Manufacturing and Others", "High"),
+    ("BHEL",       "BHEL",                      "Manufacturing and Others", "High"),
+    ("IDEA",       "Vodafone Idea",             "Manufacturing and Others", "High"),  # verify sector fit
 ]
 
 

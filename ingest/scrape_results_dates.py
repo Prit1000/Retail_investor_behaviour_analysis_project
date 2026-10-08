@@ -6,7 +6,7 @@ quarter-end dates.
 NOTE: NSE's ToS also restricts automated scraping. Use low volume,
 rate-limited, personal use only (same caveat as the shareholding scraper).
 
-Usage: python scrape_results_dates.py
+Usage: python ingest/scrape_results_dates.py
 Output: results_dates.csv with columns: ticker, quarter_end_date, results_date
 """
 

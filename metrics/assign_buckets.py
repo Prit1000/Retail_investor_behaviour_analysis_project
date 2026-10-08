@@ -8,7 +8,7 @@ Outputs p-value + verdict for all 4 combinations:
   - Metric B (realized_vol)        x ±3d
   - Metric B (realized_vol)        x ±5d
 
-Usage: python src/stats_test.py
+Usage: python -m metrics.assign_buckets   (run from repo root)
 """
 
 import sqlite3

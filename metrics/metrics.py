@@ -3,7 +3,7 @@ Compute Metric A (volume spike ratio, price range %) and Metric B (realized vol)
 for each stock-quarter at ±3d and ±5d event windows.
 Results written to metrics_results table.
 
-Usage: python src/metrics.py
+Usage: python -m metrics.metrics   (run from repo root)
 Done condition: SELECT COUNT(*) FROM metrics_results = 160 (20 stocks x 8 quarters x 2 windows...
                 actually 20 x 8 x 2 = 320 rows, one per ticker-quarter-window combination)
 """

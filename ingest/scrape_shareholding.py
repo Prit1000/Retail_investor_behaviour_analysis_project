@@ -5,7 +5,7 @@ NOTE: screener.in ToS disallows automated scraping. Use only for personal,
 low-volume, rate-limited pulls. For 20 stocks this is marginal — manual
 CSV entry (as originally planned) stays compliant. Use at your own risk.
 
-Usage: python scrape_shareholding.py
+Usage: python ingest/scrape_shareholding.py
 Output: shareholding.csv with columns:
     ticker, quarter_end_date, promoter_pct, fii_pct, dii_pct, public_retail_pct
 """
