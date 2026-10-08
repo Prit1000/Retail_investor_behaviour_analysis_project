@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS stocks (
     expected_retail_tilt TEXT             -- Low / Low-Medium / Medium / Medium-High / High
 );
 
--- shareholding: one row per stock per quarter from screener.in manual pull
+-- shareholding: one row per stock per quarter from screener.in script pulling
 CREATE TABLE IF NOT EXISTS shareholding (
     ticker              TEXT NOT NULL,
     quarter_end_date    TEXT NOT NULL,     -- ISO date e.g. 2024-03-31
