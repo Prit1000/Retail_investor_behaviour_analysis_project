@@ -13,7 +13,7 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 
-from stats_test import assign_buckets
+from metrics.assign_buckets import assign_buckets
 
 DB_PATH = Path("data/retail_behavior.db")
 WINDOWS = [3, 5]
