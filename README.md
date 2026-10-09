@@ -79,6 +79,8 @@ Actual average retail ownership ranges from **3.2% (MARUTI) to 54.7% (SUZLON)**.
 ├── tableau/
 │   ├── bucket_comparison_export.csv  # export stub (header only, no rows yet)
 │   └── kpi_flags_export.csv          # export stub (header only, no rows yet)
+├── Retail Ownership vs. Results-Day Erraticness.pptx   # 8-slide RCA presentation
+├── rca.gif                           # animated preview of the presentation slides
 └── requirements.txt
 ```
 
@@ -98,7 +100,7 @@ Actual average retail ownership ranges from **3.2% (MARUTI) to 54.7% (SUZLON)**.
                          02_post_metric_eda.ipynb ◄─────┤   (core Mann-Whitney U test)
                          03_additional_statistical_tests.ipynb
                                                         ▼
-                                   RCA (5 Whys + Fishbone) ─► Tableau / deliverables
+                                   RCA (5 Whys + Fishbone) ─► RCA presentation (PPT + GIF) / Tableau
 ```
 
 ---
@@ -270,6 +272,25 @@ Test 6 regresses `realized_vol` on all four ownership types (OLS, n = 128):
 
 ---
 
+## RCA presentation
+
+The RCA findings are summarized in an 8-slide deck: [`Retail Ownership vs. Results-Day Erraticness.pptx`](Retail%20Ownership%20vs.%20Results-Day%20Erraticness.pptx).
+
+![RCA presentation preview](rca.gif)
+
+| # | Slide |
+|---|---|
+| 1 | Title: RCA Report, Retail Ownership vs. Results-Day Erraticness |
+| 2 | Executive summary of the key findings |
+| 3 | No metric separated High- from Low-retail stocks, and the gap leaned the wrong way (Mann-Whitney U) |
+| 4 | DII ownership, not retail ownership, carries the significant link to volatility (OLS) |
+| 5 | The year-level comparison is biased because data volume differs by year (Kruskal-Wallis) |
+| 6 | Any reaction is concentrated in the ±3d window, and the ±5d window dilutes it (Wilcoxon) |
+| 7 | Sector is ruled out as the cause of the null result (Chi-square, 4-group Kruskal-Wallis) |
+| 8 | Only IDEA shows a steady retail % decline; ICICIBANK stepped down and IDFCFIRSTB peaked (OLS trend) |
+
+---
+
 ## Data quality notes & known caveats
 
 From notebook 01 and from checking the code against the database:
@@ -309,7 +330,7 @@ From notebook 01 and from checking the code against the database:
 | Follow-up statistical tests (notebook 03) | ✅ Done |
 | RCA: 5 Whys + Fishbone | ✅ Done |
 | Tableau dashboard | ⏳ Export CSVs have headers only; no workbook yet |
-| Case-study PPT | ⏳ Not started |
+| RCA presentation (PPT + GIF preview) | ✅ Done |
 
 ---
 
