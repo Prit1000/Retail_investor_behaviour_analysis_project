@@ -76,9 +76,6 @@ Actual average retail ownership ranges from **3.2% (MARUTI) to 54.7% (SUZLON)**.
 │   └── 03_additional_statistical_tests.ipynb   # 8 follow-up tests (incl. the DII finding)
 ├── RCA/
 │   └── rca_report_retail_erraticness.md        # 5 Whys + Fishbone on the null result
-├── tableau/
-│   ├── bucket_comparison_export.csv  # export stub (header only, no rows yet)
-│   └── kpi_flags_export.csv          # export stub (header only, no rows yet)
 ├── Retail Ownership vs. Results-Day Erraticness.pptx   # 8-slide RCA presentation
 ├── rca.gif                           # animated preview of the presentation slides
 └── requirements.txt
@@ -100,7 +97,7 @@ Actual average retail ownership ranges from **3.2% (MARUTI) to 54.7% (SUZLON)**.
                          02_post_metric_eda.ipynb ◄─────┤   (core Mann-Whitney U test)
                          03_additional_statistical_tests.ipynb
                                                         ▼
-                                   RCA (5 Whys + Fishbone) ─► RCA presentation (PPT + GIF) / Tableau
+                                   RCA (5 Whys + Fishbone) ─► RCA presentation (PPT + GIF)
 ```
 
 ---
@@ -329,7 +326,6 @@ From notebook 01 and from checking the code against the database:
 | Post-metric EDA + Mann-Whitney U (notebook 02) | ✅ Done |
 | Follow-up statistical tests (notebook 03) | ✅ Done |
 | RCA: 5 Whys + Fishbone | ✅ Done |
-| Tableau dashboard | ⏳ Export CSVs have headers only; no workbook yet |
 | RCA presentation (PPT + GIF preview) | ✅ Done |
 
 ---
